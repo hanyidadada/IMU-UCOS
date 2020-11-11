@@ -1,0 +1,6 @@
+-c --cpu Cortex-M4.fp.sp -g -O0 --apcs=interwork --split_sections -I .\User -I .\Libraries\STM32F4xx_StdPeriph_Driver\inc -I .\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I .\Libraries\CMSIS\Include -I .\BSP\DEBUG_USART -I .\uCos-II\port -I .\uCos-II\source -I .\APP -I .\BSP\DEBUG_USART -I .\BSP\hmc -I .\BSP\IIC -I .\BSP\mpu6050 -I .\BSP\IMU
+-I.\RTE\_ROOT
+-ID:\Arm\Packs\Keil\STM32F4xx_DFP\2.14.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include
+-ID:\Keil_v5\ARM\CMSIS\Include
+-D__UVISION_VERSION="530" -DSTM32F407xx -D_RTE_ -DUSE_STDPERIPH_DRIVER -DSTM32F40_41xxx
+-o .\objects\stm32f4xx_dma2d.o --omf_browse .\objects\stm32f4xx_dma2d.crf --depend .\objects\stm32f4xx_dma2d.d "Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dma2d.c"
