@@ -62,7 +62,7 @@
 ".\objects\hmc5883.o"
 ".\objects\mahonyahrs.o"
 ".\objects\apps.o"
---strict --scatter ".\Objects\四轴飞行器.sct"
+--library_type=microlib --strict --scatter ".\Objects\四轴飞行器.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
 --list ".\Listings\四轴飞行器.map" -o .\Objects\四轴飞行器.axf

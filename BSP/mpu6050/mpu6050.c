@@ -2,48 +2,49 @@
 #include "bsp_bluetooth.h"
 #include "bsp_i2c.h"
 /**
- * @brief MPU6050Ğ¾Æ¬³õÊ¼»¯ÅäÖÃº¯Êı
+ * @brief MPU6050Ğ¾Æ¬åˆå§‹åŒ–
  * 
  */
 void MPU6050_Init(void){
     uint8_t data;
 
-    //»½ĞÑMPU6050
+    //å”¤é†’MPU6050
     data=0x00;
     Sensor_Write(MPU6050_ADDRESS,MPU6050_RA_PWR_MGMT_1,1,&data);
-    //MPUÅäÖÃ
+    //MPUé…ç½®
     data=0x00;
     Sensor_Write(MPU6050_ADDRESS,MPU6050_RA_CONFIG,1,&data);
-    //Ğ´Èë²ÉÑùÂÊ 1K
+    //å†™å…¥é‡‡æ ·ç‡ 1K
     data=0x07;
-    Sensor_Write(MPU6050_ADDRESS,MPU6050_RA_SMPLRT_DIV,1,&data);    
-    //¼ÓËÙ¶È¼ÆÅäÖÃ   4G
+    Sensor_Write(MPU6050_ADDRESS,MPU6050_RA_SMPLRT_DIV,1,&data); 
+    
+    //åŠ é€Ÿåº¦è®¡é…ç½®   4G
     data=0x08;
     Sensor_Write(MPU6050_ADDRESS,MPU6050_RA_ACCEL_CONFIG,1,&data);
-    //ÍÓÂİÒÇÅäÖÃ   2000
+    //é™€èºä»ªé…ç½®   2000
     data=0x18;
     Sensor_Write(MPU6050_ADDRESS,MPU6050_RA_GYRO_CONFIG,1,&data);
-    //I2C_MST¹Ø
+    //I2C_MSTå…³
     data=0xC0;
     Sensor_Write(MPU6050_ADDRESS,MPU6050_RA_USER_CTRL,1,&data);  
-    //´ò¿ªÅÔÍ¨Ä£Ê½
+    //æ‰“å¼€æ—é€šæ¨¡å¼
     data=0x82;
     Sensor_Write(MPU6050_ADDRESS,MPU6050_RA_INT_PIN_CFG,1,&data);
 }
 
 /**
- * @brief ¶ÁÈ¡MPU6050Æ÷¼şID²¢ÇÒÏÔÊ¾
+ * @brief è¯»å–MPU6050å™¨ä»¶ID
  * 
- * @return uint8_t ³É¹¦·µ»Ø0£¬Ê§°Ü·µ»Ø1
+ * @return uint8_t æˆåŠŸè¿”å›0å¤±è´¥è¿”å›1
  */
 uint8_t MPU6050ReadID(void)
 {
 	unsigned char Re = 0;
-    Sensor_Read(MPU6050_ADDRESS,MPU6050_RA_WHO_AM_I,1,&Re);    //¶ÁÆ÷¼şµØÖ·
+    Sensor_Read(MPU6050_ADDRESS,MPU6050_RA_WHO_AM_I,1,&Re);    
     
 	if(Re != 0x68)
 	{
-		MPU_ERROR("MPU6050 dectected error!\r\n¼ì²â²»µ½MPU6050Ä£¿é£¬Çë¼ì²éÄ£¿éÓë¿ª·¢°åµÄ½ÓÏß");
+		printf("MPU6050 dectected error!\r\n");
 		return 0;
 	}
 	else
@@ -54,25 +55,25 @@ uint8_t MPU6050ReadID(void)
 }
 
 /**
- * @brief ¶ÁÈ¡¼ÓËÙ¶È¼ÆÊı¾İ
+ * @brief è¯»å–åŠ é€Ÿåº¦è®¡æ•°æ®
  * 
- * @param accData ´æ·Å¶ÁÈ¡µÄ¼ÓËÙ¶È¼ÆÊı¾İ
- * @return int ³É¹¦·µ»Ø1,Ê§°Ü·µ»Ø0
+ * @param accData åŠ é€Ÿåº¦è®¡æ•°æ®å­˜å‚¨æŒ‡é’ˆ
+ * @return int æˆåŠŸè¿”å›1
  */
 int MPU6050ReadAcc(uint8_t *accData)
 {
-    Sensor_Read(MPU6050_ADDRESS,MPU6050_ACC_OUT,6, accData);//¶ÁÈ¡¼ÓËÙ¶ÈÁù×Ö½ÚÊı¾İ
+    Sensor_Read(MPU6050_ADDRESS,MPU6050_ACC_OUT,6, accData);
 	return 1;
 }
 
 /**
- * @brief ¶ÁÈ¡½ÇËÙ¶È¼ÆÊı¾İ
+ * @brief è¯»å–é™€èºä»ªæ•°æ®
  * 
- * @param gyroData ´æ·Å¶ÁÈ¡µÄ½ÇËÙ¶È¼ÆÊı¾İ
- * @return int ³É¹¦·µ»Ø1,Ê§°Ü·µ»Ø0
+ * @param gyroData é™€èºä»ª æ•°æ®å­˜å‚¨æŒ‡é’ˆ
+ * @return int æˆåŠŸè¿”å›1
  */
 int MPU6050ReadGyro(uint8_t *gyroData)
 {
-    Sensor_Read(MPU6050_ADDRESS,MPU6050_GYRO_OUT,6,gyroData); //¶ÁÈ¡ÍÓÂİÒÇÁù×Ö½ÚÊı¾İ
-	return 1;
+    Sensor_Read(MPU6050_ADDRESS,MPU6050_GYRO_OUT,6,gyroData); //ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö½ï¿½ï¿½ï¿½ï¿½ï¿½
+		return 1;
 }

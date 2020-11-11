@@ -3,19 +3,19 @@
 
 #include "stm32f4xx.h"
 #include "stdio.h"
-//瀹氫箟涓插彛閰嶇疆
+//串口相关定义
 #define DEBUG_USART                             USART3
 #define DEBUG_USART_CLK                         RCC_APB1Periph_USART3
-#define DEBUG_USART_BAUDRATE                    9600 //涓插彛娉㈢壒鐜�
+#define DEBUG_USART_BAUDRATE                    9600 //波特率
 #define DEBUG_USART_IRQHandler                  USART3_IRQHandler
 #define DEBUG_USART_IRQ                 		USART3_IRQn
-//瀹氫箟RX寮曡剼鐩稿叧閰嶇疆
+//RX引脚相关定义
 #define DEBUG_USART_RX_GPIO_PORT                GPIOD
 #define DEBUG_USART_RX_GPIO_CLK                 RCC_AHB1Periph_GPIOD
 #define DEBUG_USART_RX_PIN                      GPIO_Pin_9
 #define DEBUG_USART_RX_AF                       GPIO_AF_USART3
 #define DEBUG_USART_RX_SOURCE                   GPIO_PinSource9
-//瀹氫箟TX寮曡剼鐩稿叧閰嶇疆
+//TX引脚相关定义
 #define DEBUG_USART_TX_GPIO_PORT                GPIOD
 #define DEBUG_USART_TX_GPIO_CLK                 RCC_AHB1Periph_GPIOD
 #define DEBUG_USART_TX_PIN                      GPIO_Pin_8

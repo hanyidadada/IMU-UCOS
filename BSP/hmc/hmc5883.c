@@ -2,7 +2,7 @@
 #include "bsp_bluetooth.h"
 #include "bsp_i2c.h"
 /**
- * @brief 纾佸姏璁¤姱鐗囧垵濮嬪寲
+ * @brief 磁力计初始化
  * 
  */
 void HMC_Init(void){
@@ -18,10 +18,10 @@ void HMC_Init(void){
 }
 
 /**
- * @brief 璇诲彇纾佸姏鏁版嵁
+ * @brief 读取磁力计数据
  * 
- * @param hmc 鏁版嵁瀛樺偍鎸囬拡锛岃鍙栧悗鐨勬暟鎹瓨鏀捐嚦璇ユ寚閽堝
- * @return int 鎴愬姛鍒欒繑鍥�1
+ * @param hmc 数据存储指针
+ * @return int 成功返回1
  */
 int HMC_Read(uint8_t* hmc){
     Sensor_Read(HMC5883L_ADDRESS,HMC5883L_DATA,6,hmc);//璇诲彇纾佸姏璁℃暟鎹�
